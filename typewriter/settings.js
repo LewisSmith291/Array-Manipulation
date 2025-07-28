@@ -13,7 +13,7 @@ var settings =
 	"font": "Arial", 
 	
 	//Time to when wait at end of typing before deleting
-	"timer": 0,
+	"timer": 10,
 	
 	//delay between typing each letter
 	"delay": 30,

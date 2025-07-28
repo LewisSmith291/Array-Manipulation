@@ -11,7 +11,7 @@
     <h1>Array Manipulation Project</h1>
     <!-- User Input -->
     <form>
-        <input type="text"  placeholder="Add List Item">
+        <input type="text"  placeholder="Array Element Here ">
         <div class="input-container">
             <input class="add-button" type="button" onclick="addToEnd()" value="Add to End">
             <input class="add-button" type="button" onclick="addToStart()" value="Add to Start">
@@ -21,12 +21,12 @@
         </div>
     </form>
     <!-- Console Output -->
-    <section>
-        <p data-typewriter = "on" class="console-text">console text</p>
+    <section class="console">
+        <p id="array-display"data-typewriter = "on" data-typewriter-loop = "noloop" 
+            class="console-text">Array = []</p>
+        <div id="separator"></div>
+        <p data-typewriter = "on" data-typewriter-loop = "noloop" class="console-text">d</p>
     </section> 
-    <ul>
-        
-    </ul>
     <script src = "typewriter/typewriter.js"></script>
 </body>
 <script src="ArrayManipulation.js"></script>
