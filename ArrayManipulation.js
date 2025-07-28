@@ -52,8 +52,8 @@ function displayArray(){
 
         const valueCol = document.createElement("div");
         
-        
         listElement.appendChild(NewListItem);
+
     }
     
 }
