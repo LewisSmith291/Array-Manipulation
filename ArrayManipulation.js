@@ -1,3 +1,5 @@
+import Typewriter from 'typewriter-effect/dist/core';
+
 const listElement = document.querySelector("ul");
 const inputParameter = document.querySelector("input[type='text']");
 

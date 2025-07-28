@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link href = "typewriter/typewriter.css" rel = "stylesheet">
 </head>
 <body>
     <h1>Array Manipulation Project</h1>
+    <!-- User Input -->
     <form>
         <input type="text"  placeholder="Add List Item">
         <div class="input-container">
@@ -18,9 +20,14 @@
             <input class="remove-button" type="button" onclick="removeAtIndex()" value="Remove at Index">
         </div>
     </form>
+    <!-- Console Output -->
+    <section>
+        <p data-typewriter = "on" class="console-text">console text</p>
+    </section> 
     <ul>
         
     </ul>
+    <script src = "typewriter/typewriter.js"></script>
 </body>
 <script src="ArrayManipulation.js"></script>
 </html>
