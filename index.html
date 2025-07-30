@@ -5,16 +5,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <link rel="stylesheet" href="style.css">
-        <link href = "typewriter/typewriter.css" rel = "stylesheet">
+        <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
     </head>
     <body>
         <h1>Array Manipulation Project</h1>
         <!-- User Input -->
         <form>
-            <input type="text"  placeholder="Array Element Here ">
+            <input type="text" onkeypress="if (event.keyCode == 13) { event.preventDefault()}" placeholder="Array Element Here ">
             <div class="input-container">
                 <input id="add-to-end" class="add-button" type="button" value="Add to End">
-                <input class="add-button" type="button" onclick="addToStart()" value="Add to Start">
+                <input id="add-to-start" class="add-button" type="button" value="Add to Start">
                 <input class="remove-button" type="button" onclick="removeLast()" value="Remove Last">
                 <input class="remove-button" type="button" onclick="removeFirst()" value="Remove First">
                 <input class="remove-button" type="button" onclick="removeAtIndex()" value="Remove at Index">
@@ -24,9 +24,8 @@
         <section class="console">
             <p id="array-display" class="console-text">Array = [ ]</p>
              <div id="separator"></div>
-             <p class="console-text">2</p>
+             <p id = "output-text" class="console-text"></p>
         </section> 
     </body>
-    <script src = "typewriter/typewriter.js"></script>
-    <script src = "ArrayManipulation.js"></script>
+    <script type="module" src = "ArrayManipulation.js"></script>
 </html>

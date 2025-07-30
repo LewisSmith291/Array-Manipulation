@@ -1,22 +1,32 @@
 const listElement = document.querySelector("ul");
 const inputParameter = document.querySelector("input[type='text']");
 const arrayDisplay = document.getElementById("array-display");
+const outputText = document.getElementById("output-text");
 
 var array = [];
 const arrayStart = "Array = [ ";
 const arrayEnd = " ]"
 
 document.getElementById("add-to-end").addEventListener("click", addToEnd);
+document.getElementById("add-to-start").addEventListener("click", addToStart);
+
+
+
 
 function addToEnd(){
     if (isInputEmpty()) return;
     array.push(getInput(inputParameter.value));
-    displayArray();
+    printText(inputParameter.value, "addToEnd");
+    updateArray();
+    removeText();
 }
 
 function addToStart(){
     if (isInputEmpty()) return;
-
+    array.unshift(getInput(inputParameter.value));
+    printText(inputParameter.value, "addToStart");
+    updateArray();
+    removeText();
 }
 
 function removeLast(){
@@ -34,10 +44,43 @@ function removeAtIndex(){
      
 }
 
+function removeText(){
+    inputParameter.value = "";
+}
+
+/* 
+    Changes the array display to the new array
+*/
+function updateArray(){
+    arrayDisplay.textContent = arrayStart + getString(array) + arrayEnd;
+}
 
 /*
 
 */
+function printText(inputText, buttonType){
+    let outString = "";
+    switch (buttonType){
+        case "addToEnd":
+            outString += "Array.push("+ inputText + ");";
+            break;
+        case "addToStart":
+            outString += "Array.unshift(" + inputText + ");";
+            break;
+    }
+
+    const newText = document.createElement("p");
+    newText.textContent = outString;
+    newText.classList.add("typewriter-effect");
+
+    outputText.appendChild(newText);
+
+    // Set up typewriter effect
+    let text = outputText.childNodes[outputText.childNodes.length-1];
+    const typewriter = new Typewriter(text, {loop: false, autoStart: true,}); 
+
+    typewriter.typeString(outString).start();
+}
 
 
 /*  

@@ -83,7 +83,6 @@ input[type="button"]:active{
     font-size: 2vw;
     color: rgb(30, 255, 0);
     animation: blink-caret 1s step-end infinite;
-    letter-spacing: 0.1em;
     padding: 0 1em;
 
 }
