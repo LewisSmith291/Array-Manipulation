@@ -1,33 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link href = "typewriter/typewriter.css" rel = "stylesheet">
-</head>
-<body>
-    <h1>Array Manipulation Project</h1>
-    <!-- User Input -->
-    <form>
-        <input type="text"  placeholder="Array Element Here ">
-        <div class="input-container">
-            <input class="add-button" type="button" onclick="addToEnd()" value="Add to End">
-            <input class="add-button" type="button" onclick="addToStart()" value="Add to Start">
-            <input class="remove-button" type="button" onclick="removeLast()" value="Remove Last">
-            <input class="remove-button" type="button" onclick="removeFirst()" value="Remove First">
-            <input class="remove-button" type="button" onclick="removeAtIndex()" value="Remove at Index">
-        </div>
-    </form>
-    <!-- Console Output -->
-    <section class="console">
-        <p id="array-display"data-typewriter = "on" data-typewriter-loop = "noloop" 
-            class="console-text">Array = [ ]</p>
-        <div id="separator"></div>
-        <p data-typewriter = "on" data-typewriter-loop = "noloop" class="console-text">d</p>
-    </section> 
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="style.css">
+        <link href = "typewriter/typewriter.css" rel = "stylesheet">
+    </head>
+    <body>
+        <h1>Array Manipulation Project</h1>
+        <!-- User Input -->
+        <form>
+            <input type="text"  placeholder="Array Element Here ">
+            <div class="input-container">
+                <input id="add-to-end" class="add-button" type="button" value="Add to End">
+                <input class="add-button" type="button" onclick="addToStart()" value="Add to Start">
+                <input class="remove-button" type="button" onclick="removeLast()" value="Remove Last">
+                <input class="remove-button" type="button" onclick="removeFirst()" value="Remove First">
+                <input class="remove-button" type="button" onclick="removeAtIndex()" value="Remove at Index">
+            </div>
+        </form>
+        <!-- Console Output -->
+        <section class="console">
+            <p id="array-display" class="console-text">Array = [ ]</p>
+             <div id="separator"></div>
+             <p class="console-text">2</p>
+        </section> 
+    </body>
     <script src = "typewriter/typewriter.js"></script>
-</body>
-<script src="ArrayManipulation.js"></script>
+    <script src = "ArrayManipulation.js"></script>
 </html>

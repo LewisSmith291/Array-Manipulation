@@ -1,23 +1,17 @@
-import Typewriter from 'typewriter-effect/dist/core';
-
 const listElement = document.querySelector("ul");
 const inputParameter = document.querySelector("input[type='text']");
+const arrayDisplay = document.getElementById("array-display");
 
 var array = [];
+const arrayStart = "Array = [ ";
+const arrayEnd = " ]"
 
-function addElement(...args){
-    if (args.length < 0) return;
-    args.forEach(element => {
-        array.push(element);
-    });
-
-    displayArray();
-}
+document.getElementById("add-to-end").addEventListener("click", addToEnd);
 
 function addToEnd(){
     if (isInputEmpty()) return;
-
     array.push(getInput(inputParameter.value));
+    displayArray();
 }
 
 function addToStart(){
@@ -40,43 +34,55 @@ function removeAtIndex(){
      
 }
 
-function displayArray(){
 
-    while(listElement.getElementsByTagName("li").length > 0){
-        listElement.removeChild(0);
+/*
+
+*/
+
+
+/*  
+    Creates the string used to show the contents of the array
+*/
+function getString(currentArray){
+    let outString = "";
+
+    for (let i = 0; i < currentArray.length; i++){
+        outString += currentArray[i];
+
+        if (i < currentArray.length-1){
+            outString += ", ";
+        }
     }
-
-    for (let i = 0; i < array.length; i++){
-        const NewListItem = document.createElement("li");
-
-        const IndexCol = document.createElement("div");
-        IndexCol.classList.add("");
-
-        const valueCol = document.createElement("div");
-        
-        listElement.appendChild(NewListItem);
-
-    }
-    
+    return outString;
 }
 
+/*  
+    Converts a string input into a value
+    Checks to see if the value can be converted to a number first
+    Then checks if it is a boolean or a null value
+    If there is no match, returns the value as a string #
+*/
 function getInput(input){
     let parsedInput = null;
     
     // Check if value is number
     parsedInput = Number(input);
 
+    // True bool
     if (isNaN(parsedInput)){
         if (input == "true"){
             return true;
         }
+        // False bool
         else if (input == "false"){
             return false;
         }
+        // Null
         else if (input == "null"){
             return null;
         }
         else {
+            // No conversion
             return input;
         }
     }
@@ -85,6 +91,9 @@ function getInput(input){
     }
 }
 
+/*  
+    Checks to see if the input text is empty 
+*/
 function isInputEmpty(){
     if (inputParameter.value == ""){
         return true;
