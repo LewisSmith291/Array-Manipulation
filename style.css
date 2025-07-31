@@ -78,13 +78,27 @@ input[type="button"]:active{
     margin: 1vw;
 }
 
+.console-array-display{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin-left: 2vw;
+}
+
+.inline-array{
+    display: flex; 
+    flex-direction: row; 
+    justify-content: left; 
+    align-content:flex-start;
+    background-color: rgb(0, 0, 0); 
+    margin: 0;
+}
+
 .console-text{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2vw;
     color: rgb(30, 255, 0);
     animation: blink-caret 1s step-end infinite;
-    padding: 0 1em;
-
 }
 
 

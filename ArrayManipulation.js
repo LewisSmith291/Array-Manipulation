@@ -3,21 +3,28 @@ const inputParameter = document.querySelector("input[type='text']");
 const arrayDisplay = document.getElementById("array-display");
 const outputText = document.getElementById("output-text");
 
+const consoleArrayDisplay = document.querySelector(".console-array-display");
+const arrayOutputStart = document.getElementById("array-display-start");
+const arrayOutputEnd = document.getElementById("array-display-end");
+const addHere = document.getElementById("add-here");
+
 var array = [];
 const arrayStart = "Array = [ ";
 const arrayEnd = " ]"
+var typewriterArray = [];
 
 document.getElementById("add-to-end").addEventListener("click", addToEnd);
 document.getElementById("add-to-start").addEventListener("click", addToStart);
 
 
-
-
 function addToEnd(){
     if (isInputEmpty()) return;
     array.push(getInput(inputParameter.value));
+    createTypewriterObject(inputParameter.value);
+
+
     printText(inputParameter.value, "addToEnd");
-    updateArray();
+    //updateArray();
     removeText();
 }
 
@@ -55,6 +62,26 @@ function updateArray(){
     arrayDisplay.textContent = arrayStart + getString(array) + arrayEnd;
 }
 
+
+function createTypewriterObject(stringToType){
+
+    const newText = document.createElement("p");
+    newText.textContent = stringToType;
+    newText.id = "" + array.length-1;
+    newText.classList.add("console-text");
+
+    const parent = consoleArrayDisplay;
+    console.log(parent.childNodes);
+    console.log(newText.id);
+    //parent.insertBefore(newText, parent.childNodes[newText.id]);
+
+
+    addHere.appendChild(newText);
+
+    const newTypewriter = new Typewriter(newText, {loop: false, autoStart: true, delay: 50, cursor: null});
+    newTypewriter.start().typeString(stringToType + ", ").pauseFor(500);
+}
+
 /*
 
 */
@@ -77,9 +104,8 @@ function printText(inputText, buttonType){
 
     // Set up typewriter effect
     let text = outputText.childNodes[outputText.childNodes.length-1];
-    const typewriter = new Typewriter(text, {loop: false, autoStart: true,}); 
-
-    typewriter.typeString(outString).start();
+    const typewriter = new Typewriter(text, {loop: false, autoStart: true, delay: 50, cursor: null}); 
+    typewriter.start().typeString(outString).pauseFor(500);
 }
 
 
