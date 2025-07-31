@@ -79,7 +79,7 @@ input[type="button"]:active{
     border: .5vw solid rgb(30, 255, 0);
     width: 85vw;
     margin: 1vw;
-    max-height: 50vw;
+    max-height: 65vh;
 }
 /* Displaying array to user */
 .console-array-display{
@@ -99,9 +99,10 @@ input[type="button"]:active{
 /* Text formatting for input commands the user enters */
 #output-text-container{
     display:flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     margin: 1vw;
     margin-left: 2vw;
+    overflow-y: scroll;
 }
 
 .output-text {

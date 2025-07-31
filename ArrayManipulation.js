@@ -11,6 +11,9 @@ const arrayEnd = " ]"
 
 document.getElementById("add-to-end").addEventListener("click", addToEnd);
 document.getElementById("add-to-start").addEventListener("click", addToStart);
+document.getElementById("remove-last").addEventListener("click", removeLast);
+document.getElementById("remove-first").addEventListener("click", removeFirst);
+document.getElementById("remove-at-index").addEventListener("click", removeAtIndex);
 
 function addToEnd(){
     if (isInputEmpty()) return;
@@ -29,20 +32,39 @@ function addToStart(){
 }
 
 function removeLast(){
-    if (isInputEmpty()) return;
-
+    array.pop();
+    printText(getInput(inputParameter.value), "removeLast");
+    updateArray(array);
+    removeText();
 }
 
 function removeFirst(){
-    if (isInputEmpty()) return;
+    array.shift();
+    printText(getInput(inputParameter.value), "removeFirst");
+    updateArray(array);
+    removeText();
 
 }
 
 function removeAtIndex(){
-    if (isInputEmpty()) return;
+    if (isInputEmpty()){
+        printText("Input can't be empty", "error");
+        return;
+    } 
+    if (typeof getInput(inputParameter.value) != "number") {
+        printText(colourElement(getInput(inputParameter.value)) + " is not a number", "error");
+        return;
+    }
+    array.splice(parseInt(inputParameter.value), 1);
+    printText(parseInt(inputParameter.value), "removeAtIndex");
+    updateArray(array);
+    removeText();
      
 }
 
+/*
+    Clear the text from input field
+*/
 function removeText(){
     inputParameter.value = "";
 }
@@ -60,7 +82,16 @@ function updateArray(targetArray){
 function printText(inputText, buttonType){
     let outString = "";
 
-    inputText = colourElement(inputText);
+    if (buttonType != "error"){
+        inputText = colourElement(inputText);
+        console.log(inputText);
+    }
+    else {
+        //inputText = colourElement(inputText);
+        console.log(inputText);
+    }
+
+    let isError = false;
 
     switch (buttonType){
         case "addToEnd":
@@ -68,6 +99,19 @@ function printText(inputText, buttonType){
             break;
         case "addToStart":
             outString += "Array.unshift(" + inputText + ");";
+            break;
+        case "removeLast":
+            outString += "Array.pop();";
+            break;
+        case "removeFirst":
+            outString += "Array.shift();";
+            break;
+        case "removeAtIndex":
+            outString += "Array.splice(" + inputText + ", " + colourElement(1) + ");"
+            break;
+        case "error":
+            outString += inputText;
+            isError = true;
             break;
     }
 
@@ -78,7 +122,7 @@ function printText(inputText, buttonType){
     outTypewriter.typeString(outString).start();
     
     outputText.appendChild(newLine);
-
+    
 }
 
 /*
@@ -86,6 +130,7 @@ function printText(inputText, buttonType){
 */
 function colourElement(element){
     let outputString = "";
+    element = getInput(element);
     if (typeof element == "string"){
         //console.log("string");
         outputString = "<span style='color: rgb(216, 130, 17)'>'"+element+"'</span>"; 
