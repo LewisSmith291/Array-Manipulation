@@ -20,7 +20,7 @@ function addToEnd(){
     array.push(getInput(inputParameter.value));
     printText(getInput(inputParameter.value), "addToEnd");
     updateArray(array);
-    removeText();
+    //removeText();
 }
 
 function addToStart(){
@@ -115,14 +115,25 @@ function printText(inputText, buttonType){
             break;
     }
 
+    // User command
     const newLine = document.createElement("div");
     newLine.classList.add("output-text");
 
     const outTypewriter = new Typewriter(newLine, {loop: false, cursor: "", delay: 40});
     outTypewriter.typeString(outString).start();
-    
     outputText.appendChild(newLine);
     
+    if (false){
+        // Array output
+        const arrayChange = document.createElement("div");
+        arrayChange.classList.add("array-output", "console-text");
+
+        const outArrayTypewriter = new Typewriter(arrayChange, {loop: false, cursor: "", delay: 20});
+        outArrayTypewriter.pauseFor(1000).typeString("> " + arrayStart + getString(array) + arrayEnd).start();
+        outputText.appendChild(arrayChange);
+
+        newLine.scrollIntoView({ behavior: "instant", block: "end" });
+    }
 }
 
 /*
