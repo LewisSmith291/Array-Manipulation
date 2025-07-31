@@ -11,7 +11,7 @@
         <h1>Array Manipulation Project</h1>
         <!-- User Input -->
         <form>
-            <input type="text" onkeypress="if (event.keyCode == 13) { event.preventDefault()}" placeholder="Array Element Here ">
+            <input type="text" onkeypress="if (event.keyCode == 13) { event.preventDefault()}" placeholder="Input">
             <div class="input-container">
                 <input id="add-to-end" class="add-button" type="button" value="Add to End">
                 <input id="add-to-start" class="add-button" type="button" value="Add to Start">
@@ -23,15 +23,10 @@
         <!-- Console Output -->
         <section class="console">
             <div class="console-array-display">
-                <p id="array-display-start" class="console-text">Array = [ </p>
-                <p id="add-here" class="console-text, inline-array" ></p>
-                
-                <p id="array-display-end" class="console-text"> ]</p>
-
+                <p id="array-display" class="console-text">Array = [ ]</p>
             </div>
-
             <div id="separator"></div>
-            <p id = "output-text" class="console-text"></p>
+            <p id = "output-text-container" class="console-text"></p>
         </section> 
     </body>
     <script type="module" src = "ArrayManipulation.js"></script>

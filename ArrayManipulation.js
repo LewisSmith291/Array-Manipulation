@@ -1,38 +1,30 @@
 const listElement = document.querySelector("ul");
 const inputParameter = document.querySelector("input[type='text']");
 const arrayDisplay = document.getElementById("array-display");
-const outputText = document.getElementById("output-text");
+const outputText = document.getElementById("output-text-container");
 
 const consoleArrayDisplay = document.querySelector(".console-array-display");
-const arrayOutputStart = document.getElementById("array-display-start");
-const arrayOutputEnd = document.getElementById("array-display-end");
-const addHere = document.getElementById("add-here");
 
 var array = [];
 const arrayStart = "Array = [ ";
 const arrayEnd = " ]"
-var typewriterArray = [];
 
 document.getElementById("add-to-end").addEventListener("click", addToEnd);
 document.getElementById("add-to-start").addEventListener("click", addToStart);
 
-
 function addToEnd(){
     if (isInputEmpty()) return;
     array.push(getInput(inputParameter.value));
-    createTypewriterObject(inputParameter.value);
-
-
-    printText(inputParameter.value, "addToEnd");
-    //updateArray();
+    printText(getInput(inputParameter.value), "addToEnd");
+    updateArray(array);
     removeText();
 }
 
 function addToStart(){
     if (isInputEmpty()) return;
     array.unshift(getInput(inputParameter.value));
-    printText(inputParameter.value, "addToStart");
-    updateArray();
+    printText(getInput(inputParameter.value), "addToStart");
+    updateArray(array);
     removeText();
 }
 
@@ -58,35 +50,18 @@ function removeText(){
 /* 
     Changes the array display to the new array
 */
-function updateArray(){
-    arrayDisplay.textContent = arrayStart + getString(array) + arrayEnd;
-}
-
-
-function createTypewriterObject(stringToType){
-
-    const newText = document.createElement("p");
-    newText.textContent = stringToType;
-    newText.id = "" + array.length-1;
-    newText.classList.add("console-text");
-
-    const parent = consoleArrayDisplay;
-    console.log(parent.childNodes);
-    console.log(newText.id);
-    //parent.insertBefore(newText, parent.childNodes[newText.id]);
-
-
-    addHere.appendChild(newText);
-
-    const newTypewriter = new Typewriter(newText, {loop: false, autoStart: true, delay: 50, cursor: null});
-    newTypewriter.start().typeString(stringToType + ", ").pauseFor(500);
+function updateArray(targetArray){
+    arrayDisplay.innerHTML = arrayStart + getString(targetArray) + arrayEnd;
 }
 
 /*
-
+    Prints text showing what the user would have to type to use the function they click on
 */
 function printText(inputText, buttonType){
     let outString = "";
+
+    inputText = colourElement(inputText);
+
     switch (buttonType){
         case "addToEnd":
             outString += "Array.push("+ inputText + ");";
@@ -96,18 +71,39 @@ function printText(inputText, buttonType){
             break;
     }
 
-    const newText = document.createElement("p");
-    newText.textContent = outString;
-    newText.classList.add("typewriter-effect");
+    const newLine = document.createElement("div");
+    newLine.classList.add("output-text");
 
-    outputText.appendChild(newText);
+    const outTypewriter = new Typewriter(newLine, {loop: false, cursor: "", delay: 40});
+    outTypewriter.typeString(outString).start();
+    
+    outputText.appendChild(newLine);
 
-    // Set up typewriter effect
-    let text = outputText.childNodes[outputText.childNodes.length-1];
-    const typewriter = new Typewriter(text, {loop: false, autoStart: true, delay: 50, cursor: null}); 
-    typewriter.start().typeString(outString).pauseFor(500);
 }
 
+/*
+    Takes an input and returns a string that colours the input based on its type
+*/
+function colourElement(element){
+    let outputString = "";
+    if (typeof element == "string"){
+        //console.log("string");
+        outputString = "<span style='color: rgb(216, 130, 17)'>'"+element+"'</span>"; 
+    }
+    else if (typeof element == "number"){
+        //console.log("num");
+        outputString = "<span style='color: rgb(0, 174, 255)'>"+element+"</span>";
+    }
+    else if (typeof element == "boolean"){
+        //console.log("bool");
+        outputString = "<span style='color: rgb(200, 35, 200)'>"+element+"</span>";
+    }
+    else if (element == null){
+        //console.log("null");
+        outputString = "<span style='color: rgba(139, 139, 139, 1)'>"+element+"</span>";
+    }
+    return outputString;
+}
 
 /*  
     Creates the string used to show the contents of the array
@@ -116,20 +112,18 @@ function getString(currentArray){
     let outString = "";
 
     for (let i = 0; i < currentArray.length; i++){
-        outString += currentArray[i];
+        outString += colourElement(currentArray[i]);
 
         if (i < currentArray.length-1){
             outString += ", ";
         }
+
     }
     return outString;
 }
 
 /*  
     Converts a string input into a value
-    Checks to see if the value can be converted to a number first
-    Then checks if it is a boolean or a null value
-    If there is no match, returns the value as a string #
 */
 function getInput(input){
     let parsedInput = null;

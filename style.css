@@ -1,3 +1,4 @@
+    /*---General---*/
 body{
     display: flex;
     flex-direction: column;
@@ -10,24 +11,27 @@ h1{
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(30, 255, 0);
     filter: drop-shadow(0.55rem 0.5rem 0.4rem rgba(0, 255, 0, 0.5));
+    margin: .5vw;
 }
+    /*---Input Styles---*/
 
+/* Containers for all user inputs */
 form{
     display: flex;
     flex-direction: column;
     gap: 1vw;
     align-items: center;
 }
-
 .input-container{
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 1vw;
-    width: 90vw;
+    width: 80vw;
     justify-content: center;
 }
 
+/* Style for text input box */
 input[type="text"]{
     background-color: rgb(0, 0, 0);
     font-family: Arial, Helvetica, sans-serif;
@@ -40,10 +44,7 @@ input[type="text"]{
     border-color: rgb(30, 255, 0);
 }
 
-input[type="text"]::highlight{
-    border-color: rgb(30, 255, 0);
-}
-
+/*---Button styles---*/
 input[type="button"]{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2vw;
@@ -54,30 +55,33 @@ input[type="button"]{
     border-color:rgb(30, 255, 0);
     color: rgb(30, 255, 0);;
 }
-
-.add-button{
-    background-color: rgb(188, 255, 150);
-    background-color: rgba(0,250,0,0.2);
-}
-
-.remove-button{
-    background-color: rgba(250,0,0,0.2);
-}
-
 input[type="button"]:active{
     filter: invert(10%);
 }
 
+/* Colours for buttons depending on if they add or remove elements */
+.add-button{
+    background-color: rgb(188, 255, 150);
+    background-color: rgba(0,250,0,0.2);
+}
+.remove-button{
+    background-color: rgba(250,0,0,0.2);
+}
+
+    /*---Console Styles---*/
+
+/* Style for the console container */
 .console{
     background-color: rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
     justify-content: left;
     border: .5vw solid rgb(30, 255, 0);
-    width: 95vw;
+    width: 85vw;
     margin: 1vw;
+    max-height: 50vw;
 }
-
+/* Displaying array to user */
 .console-array-display{
     display: flex;
     flex-direction: row;
@@ -85,29 +89,30 @@ input[type="button"]:active{
     margin-left: 2vw;
 }
 
-.inline-array{
-    display: flex; 
-    flex-direction: row; 
-    justify-content: left; 
-    align-content:flex-start;
-    background-color: rgb(0, 0, 0); 
-    margin: 0;
-}
-
+/* Text formatting for all text in console */
 .console-text{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2vw;
     color: rgb(30, 255, 0);
-    animation: blink-caret 1s step-end infinite;
 }
 
+/* Text formatting for input commands the user enters */
+#output-text-container{
+    display:flex;
+    flex-direction: column;
+    margin: 1vw;
+    margin-left: 2vw;
+}
 
-/* List */
+.output-text {
+    padding: 0.5vw;
+}
+
+/* Seperator that partitions the array output and user input commands */
 #separator{
     position: relative;
     align-self: center;
     justify-self: center;
-    width: 95vw;
+    width: 85vw;
     border: .25vw solid rgb(30, 255, 0);
-    margin: 1vw;
 }
