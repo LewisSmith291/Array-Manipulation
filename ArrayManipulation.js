@@ -20,7 +20,6 @@ function addToEnd(){
     array.push(getInput(inputParameter.value));
     printText(getInput(inputParameter.value), "addToEnd");
     updateArray(array);
-    //removeText();
 }
 
 function addToStart(){
@@ -55,6 +54,12 @@ function removeAtIndex(){
         printText(colourElement(getInput(inputParameter.value)) + " is not a number", "error");
         return;
     }
+    else if (getInput(inputParameter.value) >= array.length){
+        printText("index: " + colourElement(getInput(inputParameter.value)) + 
+            " is too large for the array", "error");
+        removeText();
+        return
+    }
     array.splice(parseInt(inputParameter.value), 1);
     printText(parseInt(inputParameter.value), "removeAtIndex");
     updateArray(array);
@@ -84,11 +89,11 @@ function printText(inputText, buttonType){
 
     if (buttonType != "error"){
         inputText = colourElement(inputText);
-        console.log(inputText);
+        //console.log(inputText);
     }
     else {
         //inputText = colourElement(inputText);
-        console.log(inputText);
+        //console.log(inputText);
     }
 
     let isError = false;
@@ -123,17 +128,7 @@ function printText(inputText, buttonType){
     outTypewriter.typeString(outString).start();
     outputText.appendChild(newLine);
     
-    if (false){
-        // Array output
-        const arrayChange = document.createElement("div");
-        arrayChange.classList.add("array-output", "console-text");
-
-        const outArrayTypewriter = new Typewriter(arrayChange, {loop: false, cursor: "", delay: 20});
-        outArrayTypewriter.pauseFor(1000).typeString("> " + arrayStart + getString(array) + arrayEnd).start();
-        outputText.appendChild(arrayChange);
-
-        newLine.scrollIntoView({ behavior: "instant", block: "end" });
-    }
+    newLine.scrollIntoView(false);
 }
 
 /*
@@ -141,7 +136,7 @@ function printText(inputText, buttonType){
 */
 function colourElement(element){
     let outputString = "";
-    element = getInput(element);
+    //element = getInput(element); 
     if (typeof element == "string"){
         //console.log("string");
         outputString = "<span style='color: rgb(216, 130, 17)'>'"+element+"'</span>"; 
@@ -187,9 +182,11 @@ function getInput(input){
     // Check if value is number
     parsedInput = Number(input);
 
+    console.log(parsedInput);
     // True bool
     if (isNaN(parsedInput)){
         if (input == "true"){
+            console.log("true");
             return true;
         }
         // False bool
