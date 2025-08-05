@@ -82,7 +82,7 @@ input[type="button"]:active{
     min-height: 65vh;
 }
 /* Displaying array to user */
-.console-array-display{
+.console-array-display{ 
     display: flex;
     flex-direction: row;
     justify-content: left;
@@ -96,7 +96,7 @@ input[type="button"]:active{
     color: rgb(30, 255, 0);
 }
 
-/* Text formatting for input commands the user enters */
+/* Container for output text */
 #output-text-container{
     display:flex;
     flex-direction: column;
@@ -106,6 +106,7 @@ input[type="button"]:active{
     height: auto;
 }
 
+/* Text formatting for input commands the user enters */
 .array-output{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2vw;

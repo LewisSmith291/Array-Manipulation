@@ -2,7 +2,6 @@ const listElement = document.querySelector("ul");
 const inputParameter = document.querySelector("input[type='text']");
 const arrayDisplay = document.getElementById("array-display");
 const outputText = document.getElementById("output-text-container");
-
 const consoleArrayDisplay = document.querySelector(".console-array-display");
 
 var array = [];
@@ -15,15 +14,26 @@ document.getElementById("remove-last").addEventListener("click", removeLast);
 document.getElementById("remove-first").addEventListener("click", removeFirst);
 document.getElementById("remove-at-index").addEventListener("click", removeAtIndex);
 
+/* 
+    Functions for buttons
+*/
+
 function addToEnd(){
-    if (isInputEmpty()) return;
+    if (isInputEmpty()) {
+        printText("Input can't be empty", "error");
+        return;
+    }
     array.push(getInput(inputParameter.value));
     printText(getInput(inputParameter.value), "addToEnd");
     updateArray(array);
+    removeText();
 }
 
 function addToStart(){
-    if (isInputEmpty()) return;
+    if (isInputEmpty()) {
+        printText("Input can't be empty", "error");
+        return;
+    }
     array.unshift(getInput(inputParameter.value));
     printText(getInput(inputParameter.value), "addToStart");
     updateArray(array);
@@ -42,7 +52,6 @@ function removeFirst(){
     printText(getInput(inputParameter.value), "removeFirst");
     updateArray(array);
     removeText();
-
 }
 
 function removeAtIndex(){
@@ -86,18 +95,12 @@ function updateArray(targetArray){
 */
 function printText(inputText, buttonType){
     let outString = "";
-
     if (buttonType != "error"){
         inputText = colourElement(inputText);
-        //console.log(inputText);
-    }
-    else {
-        //inputText = colourElement(inputText);
-        //console.log(inputText);
     }
 
     let isError = false;
-
+    // Format string depending on type of button or error
     switch (buttonType){
         case "addToEnd":
             outString += "Array.push("+ inputText + ");";
@@ -119,15 +122,13 @@ function printText(inputText, buttonType){
             isError = true;
             break;
     }
-
-    // User command
+    // User command element
     const newLine = document.createElement("div");
     newLine.classList.add("output-text");
-
+    // Typewriter effect
     const outTypewriter = new Typewriter(newLine, {loop: false, cursor: "", delay: 40});
     outTypewriter.typeString(outString).start();
     outputText.appendChild(newLine);
-    
     newLine.scrollIntoView(false);
 }
 
@@ -136,21 +137,16 @@ function printText(inputText, buttonType){
 */
 function colourElement(element){
     let outputString = "";
-    //element = getInput(element); 
     if (typeof element == "string"){
-        //console.log("string");
         outputString = "<span style='color: rgb(216, 130, 17)'>'"+element+"'</span>"; 
     }
     else if (typeof element == "number"){
-        //console.log("num");
         outputString = "<span style='color: rgb(0, 174, 255)'>"+element+"</span>";
     }
     else if (typeof element == "boolean"){
-        //console.log("bool");
         outputString = "<span style='color: rgb(200, 35, 200)'>"+element+"</span>";
     }
     else if (element == null){
-        //console.log("null");
         outputString = "<span style='color: rgba(139, 139, 139, 1)'>"+element+"</span>";
     }
     return outputString;
